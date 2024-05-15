@@ -907,7 +907,7 @@ void DOS_Shell::InputCommand(char * line) {
             case 0x0a:				/* Give a new Line */
                 outc('\n');
                 break;
-            case '': // FAKE CTRL-C
+            case '\x03': // FAKE CTRL-C
                 *line = 0;      // reset the line.
                 if (l_completion.size()) l_completion.clear(); //reset the completion list.
                 size = 0;       // stop the next loop
