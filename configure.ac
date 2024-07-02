@@ -700,6 +700,16 @@ AC_CHECK_LIB(tinfo, nodelay,
 	       LIBS="$LIBS -ltinfo";
 	     fi)
 
+dnl LIBRARY TEST: FLAC
+pkg-config --exists flac; RES=$?
+if test x$RES = x0; then
+  CFLAGS="$CFLAGS "`pkg-config flac --cflags`
+  CPPFLAGS="$CPPFLAGS "`pkg-config flac --cflags`
+  LIBS="$LIBS "`pkg-config flac --libs`
+else
+  AC_MSG_ERROR([Can't find FLAC, which is required for building libchdr])
+fi
+
 dnl LIBRARY TEST: libzlib
 AC_CHECK_HEADER(zlib.h,have_zlib_h=yes,)
 AC_CHECK_LIB(z, inflateEnd, have_zlib_lib=yes, ,)
