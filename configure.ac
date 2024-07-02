@@ -379,7 +379,6 @@ AC_CHECK_CXXFLAGS([ -Wextra ])
 AC_CHECK_CXXFLAGS([ -Wunused ])
 AC_CHECK_CXXFLAGS([ -pedantic ])
 AC_CHECK_CXXFLAGS([ -Wno-error=format-security ])     # imfc.cpp and later versions of GCC, see https://github.com/joncampbell123/dosbox-x/issues/4436
-AC_CHECK_CXXFLAGS([ -Wno-error=incompatible-pointer-types ]) # required to compile speexdsp/fftwrap.c with GCC 14
 #AC_CHECK_CXXFLAGS([ -Wconversion ])      DO NOT ENABLE. THIS WARNING IS WAY TOO PEDANTIC TO BE USEFUL, EXCEPT FOR SPECIFIC CASES
 #AC_CHECK_CXXFLAGS([ -Wsign-conversion ])
 AC_CHECK_CXXFLAGS([ -Wlogical-op ])
@@ -708,6 +707,26 @@ if test x$RES = x0; then
   LIBS="$LIBS "`pkg-config flac --libs`
 else
   AC_MSG_ERROR([Can't find FLAC, which is required for building libchdr])
+fi
+
+dnl LIBRARY TEST: speexdsp
+pkg-config --exists speexdsp; RES=$?
+if test x$RES = x0; then
+  CFLAGS="$CFLAGS "`pkg-config speexdsp --cflags`
+  CPPFLAGS="$CPPFLAGS "`pkg-config speexdsp --cflags`
+  LIBS="$LIBS "`pkg-config speexdsp --libs`
+else
+  AC_MSG_ERROR([Can't find speexdsp, which is required for OPUS decoding])
+fi
+
+dnl LIBRARY TEST: opusfile
+pkg-config --exists opusfile; RES=$?
+if test x$RES = x0; then
+  CFLAGS="$CFLAGS "`pkg-config opusfile --cflags`
+  CPPFLAGS="$CPPFLAGS "`pkg-config opusfile --cflags`
+  LIBS="$LIBS "`pkg-config opusfile --libs`
+else
+  AC_MSG_ERROR([Can't find opusfile, which is required for OPUS decoding])
 fi
 
 dnl LIBRARY TEST: physfs
@@ -1375,7 +1394,6 @@ src/libs/gui_tk/Makefile
 src/libs/passthroughio/Makefile
 src/libs/mt32/Makefile
 src/libs/xBRZ/Makefile
-src/libs/decoders/internal/Makefile
 src/output/Makefile
 src/output/direct3d/Makefile
 src/builtin/Makefile
