@@ -710,6 +710,16 @@ else
   AC_MSG_ERROR([Can't find FLAC, which is required for building libchdr])
 fi
 
+dnl LIBRARY TEST: physfs
+pkg-config --exists physfs; RES=$?
+if test x$RES = x0; then
+  CFLAGS="$CFLAGS "`pkg-config physfs --cflags`
+  CPPFLAGS="$CPPFLAGS "`pkg-config physfs --cflags`
+  LIBS="$LIBS "`pkg-config physfs --libs`
+else
+  AC_MSG_ERROR([Can't find physfs, which is required for physfs drives])
+fi
+
 dnl LIBRARY TEST: libzlib
 AC_CHECK_HEADER(zlib.h,have_zlib_h=yes,)
 AC_CHECK_LIB(z, inflateEnd, have_zlib_lib=yes, ,)

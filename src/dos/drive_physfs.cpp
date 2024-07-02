@@ -27,27 +27,8 @@
 #include <sys/statvfs.h>
 #endif
 
-#include "../libs/physfs/physfs.h"
-#include "../libs/physfs/physfs.c"
-#include "../libs/physfs/physfs_archiver_7z.c"
-#include "../libs/physfs/physfs_archiver_dir.c"
-#include "../libs/physfs/physfs_archiver_grp.c"
-#include "../libs/physfs/physfs_archiver_hog.c"
-#include "../libs/physfs/physfs_archiver_iso9660.c"
-#include "../libs/physfs/physfs_archiver_mvl.c"
-#include "../libs/physfs/physfs_archiver_qpak.c"
-#include "../libs/physfs/physfs_archiver_slb.c"
-#include "../libs/physfs/physfs_archiver_unpacked.c"
-#include "../libs/physfs/physfs_archiver_vdf.c"
-#include "../libs/physfs/physfs_archiver_wad.c"
-#include "../libs/physfs/physfs_archiver_zip.c"
-#include "../libs/physfs/physfs_byteorder.c"
-#include "../libs/physfs/physfs_platform_posix.c"
-#include "../libs/physfs/physfs_platform_unix.c"
-#include "../libs/physfs/physfs_platform_windows.c"
-#include "../libs/physfs/physfs_platform_winrt.cpp"
-#include "../libs/physfs/physfs_platform_haiku.cpp"
-#include "../libs/physfs/physfs_unicode.c"
+#include <physfs.h>
+#define BAIL_IF_ERRPASS(c, r) do { if (c) { return r; } } while (0)
 
 extern int lfn_filefind_handle;
 extern uint16_t ldid[256];
