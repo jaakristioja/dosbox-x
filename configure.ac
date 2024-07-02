@@ -946,6 +946,14 @@ AC_ARG_ENABLE(debug,AC_HELP_STRING([--enable-debug],[Enable debug mode]),[
    elif test x$curses_lib != x -a x$have_curses_h = xyes; then
      LIBS="$LIBS -l$curses_lib"
      AC_DEFINE(C_DEBUG,1)
+     pkg-config --exists gmock gtest; RES=$?
+     if test x$RES = x0; then
+       CFLAGS="$CFLAGS "`pkg-config gmock gtest --cflags`
+       CPPFLAGS="$CPPFLAGS "`pkg-config gmock gtest --cflags`
+       LIBS="$LIBS "`pkg-config gmock gtest --libs`
+     else
+       AC_MSG_ERROR([Can't find gtest and/or gmock, which are required for tests in debug mode])
+     fi
      if test x$enable_debug = xheavy ; then 
        AC_DEFINE(C_HEAVY_DEBUG,1)
      fi
