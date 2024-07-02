@@ -68,8 +68,6 @@ NE2000 network card emulation (Bochs; LGPLv2+) src/hardware/ne2000.cpp
 
 MT32 synthesizer (MUNT; LGPLv2.1+) src/libs/mt32/.cpp src/libs/mt32/.h
 
-FluidSynth synthesizer (Tom Moebert; GPLv2+) src/libs/fluidsynth/.c src/libs/fluidsynth/.h
-
 Framework-agnostic GUI toolkit (Jorg Walter; GPLv3+) src/libs/gui_tk/.cpp src/libs/gui_tk/.h
 
 FLAC, MP3, WAV, and Vorbis libraries (David Reid, Kevin Croft, et al; GPLv2+) src/libs/decoders/mp3*.cpp src/libs/decoders/.c src/libs/decoders/.h
