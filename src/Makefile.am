@@ -61,10 +61,6 @@ dosbox_x_LDADD += libs/mt32/libmt32.a
 endif
 endif
 
-if !EMSCRIPTEN
-dosbox_x_LDADD += libs/fluidsynth/libfluidsynth.a
-endif
-
 if EMSCRIPTEN
 dosbox_x_js:
 	cp dosbox-x dosbox-x.js
