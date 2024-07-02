@@ -46,12 +46,6 @@ mmx.h \
 menu.h \
 menudef.h \
 resource.h \
-voodoo.h \
-ioapi.h \
-iowin32.h \
-unzip.h \
-zip.h \
-crypt.h \
-mztools.h
+voodoo.h
 
 

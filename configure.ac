@@ -739,6 +739,16 @@ else
   AC_MSG_ERROR([Can't find physfs, which is required for physfs drives])
 fi
 
+dnl LIBRARY TEST: minizip
+pkg-config --exists minizip; RES=$?
+if test x$RES = x0; then
+  CFLAGS="$CFLAGS "`pkg-config minizip --cflags`
+  CPPFLAGS="$CPPFLAGS "`pkg-config minizip --cflags`
+  LIBS="$LIBS "`pkg-config minizip --libs`
+else
+  AC_MSG_ERROR([Can't find minizip, which is required for state saving])
+fi
+
 dnl LIBRARY TEST: libzlib
 AC_CHECK_HEADER(zlib.h,have_zlib_h=yes,)
 AC_CHECK_LIB(z, inflateEnd, have_zlib_lib=yes, ,)

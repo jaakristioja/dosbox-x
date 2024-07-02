@@ -26,14 +26,22 @@
 #endif
 
 #define MAXU32 0xffffffff
-#include "zip.h"
-#include "unzip.h"
-#include "ioapi.h"
-#include "vs/zlib/contrib/minizip/zip.c"
-#include "vs/zlib/contrib/minizip/unzip.c"
-#include "vs/zlib/contrib/minizip/ioapi.c"
+#include <minizip/zip.h>
+#include <minizip/unzip.h>
+#include <minizip/ioapi.h>
 #if !defined(HX_DOS)
 #include "../libs/tinyfiledialogs/tinyfiledialogs.h"
+#endif
+
+#ifdef __APPLE__
+// In darwin and perhaps other BSD variants off_t is a 64 bit value, hence no need for specific 64 bit functions
+#define FOPEN_FUNC(filename, mode) fopen(filename, mode)
+#define FTELLO_FUNC(stream) ftello(stream)
+#define FSEEKO_FUNC(stream, offset, origin) fseeko(stream, offset, origin)
+#else
+#define FOPEN_FUNC(filename, mode) fopen64(filename, mode)
+#define FTELLO_FUNC(stream) ftello64(stream)
+#define FSEEKO_FUNC(stream, offset, origin) fseeko64(stream, offset, origin)
 #endif
 
 extern unsigned int page;
@@ -875,17 +883,6 @@ uLong filetime(char *f, tm_zip *tmzip, uLong *dt)
     return 0;
 }
 #endif
-#endif
-
-#ifdef __APPLE__
-// In darwin and perhaps other BSD variants off_t is a 64 bit value, hence no need for specific 64 bit functions
-#define FOPEN_FUNC(filename, mode) fopen(filename, mode)
-#define FTELLO_FUNC(stream) ftello(stream)
-#define FSEEKO_FUNC(stream, offset, origin) fseeko(stream, offset, origin)
-#else
-#define FOPEN_FUNC(filename, mode) fopen64(filename, mode)
-#define FTELLO_FUNC(stream) ftello64(stream)
-#define FSEEKO_FUNC(stream, offset, origin) fseeko64(stream, offset, origin)
 #endif
 
 int getFileCrc(const char* filenameinzip,void*buf,unsigned long size_buf,unsigned long* result_crc)
