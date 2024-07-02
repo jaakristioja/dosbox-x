@@ -9,8 +9,3 @@ libdos_a_SOURCES = dos.cpp dos_devices.cpp dos_execute.cpp dos_files.cpp dos_ioc
 		   cdrom.h cdrom.cpp cdrom_ioctl_win32.cpp cdrom_aspi_win32.cpp cdrom_ioctl_linux.cpp cdrom_image.cpp \
 		   cdrom_ioctl_os2.cpp eltorito.cpp
 
-if MACOSX
-libdos_a_SOURCES += \
-	../libs/physfs/physfs_platform_apple.mm
-endif
-

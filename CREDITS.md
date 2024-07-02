@@ -94,8 +94,6 @@ QCOW image support (Michael Greger; GPLv2+) src/ints/qcow2_disk.cpp
 
 JEGA and DOS/V support (nanshiki, Wengier; GPLv2+) include/jfont.h src/ints/int_dosv.cpp
 
-PhysFS archive support (Ryan Gordon; zlib licence) src/libs/physfs/*
-
 Tiny File Dialogs (vareille; zlib licence) src/libs/tinyfiledialogs/*
 
 MAME CHD support (Romain Tisserand; BSD 3-clause) src/libs/libchdr/*
