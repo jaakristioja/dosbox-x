@@ -12,14 +12,14 @@ bin_PROGRAMS = dosbox-x
 resdir = $(datarootdir)/dosbox-x
 
 res_DATA = \
-	../dosbox-x.reference.conf \
-	../dosbox-x.reference.full.conf \
-	../contrib/fonts/FREECG98.BMP \
-	../contrib/fonts/wqy_11pt.bdf \
-	../contrib/fonts/wqy_12pt.bdf \
-	../contrib/fonts/Nouveau_IBM.ttf \
-	../contrib/fonts/SarasaGothicFixed.ttf \
-	../CHANGELOG
+	$(top_srcdir)/dosbox-x.reference.conf \
+	$(top_srcdir)/dosbox-x.reference.full.conf \
+	$(top_srcdir)/contrib/fonts/FREECG98.BMP \
+	$(top_srcdir)/contrib/fonts/wqy_11pt.bdf \
+	$(top_srcdir)/contrib/fonts/wqy_12pt.bdf \
+	$(top_srcdir)/contrib/fonts/Nouveau_IBM.ttf \
+	$(top_srcdir)/contrib/fonts/SarasaGothicFixed.ttf \
+	$(top_srcdir)/CHANGELOG
 
 if HAVE_WINDRES
 ico_stuff = winres.rc
