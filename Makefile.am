@@ -162,7 +162,7 @@ install: src/dosbox-x
 	mkdir -p $(DESTDIR)$(prefix)/share/applications
 	install -m 644 $(srcdir)/contrib/linux/com.dosbox_x.DOSBox-X.desktop $(DESTDIR)$(prefix)/share/applications
 	mkdir -p $(DESTDIR)$(prefix)/share/metainfo
-	install -m 644 $(srcdir)/contrib/linux/com.dosbox_x.DOSBox-X.metainfo.xml $(DESTDIR)$(prefix)/share/metainfo
+	install -m 644 contrib/linux/com.dosbox_x.DOSBox-X.metainfo.xml $(DESTDIR)$(prefix)/share/metainfo
 	mkdir -p $(DESTDIR)$(mandir)/man1
 	install -m 644 $(srcdir)/contrib/linux/dosbox-x.1 $(DESTDIR)$(mandir)/man1
 	mkdir -p $(DESTDIR)$(prefix)/share/bash-completion/completions
