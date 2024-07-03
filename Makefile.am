@@ -28,7 +28,8 @@ dosbox-x.app: $(MACOS_BINARIES) contrib/macos/dosbox.icns src/tool/mach-o-matic
 	cp -v contrib/macos/dosbox-x.pkginfo dosbox-x.app/Contents/PkgInfo
 	cp -v contrib/macos/dosbox.icns dosbox-x.app/Contents/Resources/dosbox-x.icns
 	cp -v contrib/fonts/FREECG98.BMP dosbox-x.app/Contents/Resources/freecg98.bmp
-	cp -v contrib/fonts/wqy_1?pt.bdf dosbox-x.app/Contents/Resources/
+	cp -v contrib/fonts/wqy_11pt.bdf dosbox-x.app/Contents/Resources/
+	cp -v contrib/fonts/wqy_12pt.bdf dosbox-x.app/Contents/Resources/
 	cp -v contrib/fonts/Nouveau_IBM.ttf dosbox-x.app/Contents/Resources/Nouveau_IBM.ttf
 	cp -v contrib/fonts/SarasaGothicFixed.ttf dosbox-x.app/Contents/Resources/SarasaGothicFixed.ttf
 	cp -v contrib/windows/installer/drivez_readme.txt dosbox-x.app/Contents/Resources/drivez/readme.txt
@@ -149,7 +150,8 @@ install: src/dosbox-x
 	install -m 644 $(srcdir)/contrib/fonts/FREECG98.BMP $(DESTDIR)$(prefix)/share/dosbox-x
 	install -m 644 $(srcdir)/dosbox-x.reference.conf $(DESTDIR)$(prefix)/share/dosbox-x
 	install -m 644 $(srcdir)/dosbox-x.reference.full.conf $(DESTDIR)$(prefix)/share/dosbox-x
-	install -m 644 $(srcdir)/contrib/fonts/wqy_1?pt.bdf $(DESTDIR)$(prefix)/share/dosbox-x
+	install -m 644 $(srcdir)/contrib/fonts/wqy_11pt.bdf $(DESTDIR)$(prefix)/share/dosbox-x
+	install -m 644 $(srcdir)/contrib/fonts/wqy_12pt.bdf $(DESTDIR)$(prefix)/share/dosbox-x
 	install -m 644 $(srcdir)/contrib/fonts/Nouveau_IBM.ttf $(DESTDIR)$(prefix)/share/dosbox-x
 	install -m 644 $(srcdir)/contrib/fonts/SarasaGothicFixed.ttf $(DESTDIR)$(prefix)/share/dosbox-x
 	install -m 644 $(srcdir)/contrib/windows/installer/drivez_readme.txt $(DESTDIR)$(prefix)/share/dosbox-x/drivez/readme.txt
