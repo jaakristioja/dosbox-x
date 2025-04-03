@@ -28,12 +28,9 @@
 #endif
 
 #define MAXU32 0xffffffff
-#include "zip.h"
-#include "unzip.h"
-#include "ioapi.h"
-#include "vs/zlib/contrib/minizip/zip.c"
-#include "vs/zlib/contrib/minizip/unzip.c"
-#include "vs/zlib/contrib/minizip/ioapi.c"
+#include <minizip/zip.h>
+#include <minizip/unzip.h>
+#include <minizip/ioapi.h>
 #include "zipcppstdbuf.h"
 #if !defined(HX_DOS)
 #include "../libs/tinyfiledialogs/tinyfiledialogs.h"
