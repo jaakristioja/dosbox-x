@@ -123,51 +123,23 @@ AC_CHECK_HEADERS([sys/socket.h  netinet/in.h pwd.h], [], [],
 #endif
 ])
 
-dnl C++11 is deprecated in this codebase.
-dnl C++14 is recommended at this time, will eventually become mandatory.
-
+dnl C++14 is required.
 dnl AC_CHECK_CXXFLAGS will prepend gnu++11 to CXXFLAGS if supported, for us.
 OLDCFLAGS="$CFLAGS"
 OLDCPPFLAGS="$CPPFLAGS"
 OLDCXXFLAGS="$CXXFLAGS"
-
 AC_MSG_CHECKING([checking for C++14 support])
 AC_CHECK_CXXFLAGS([ -std=gnu++14 ], [  ], [
     warn_cpp11=1
 ])
-
 CXXFLAGS="$OLDCXXFLAGS"
 CPPFLAGS="$OLDCPPFLAGS"
 CFLAGS="$OLDCFLAGS"
-
-AC_MSG_CHECKING([checking for C++11 support])
-AC_CHECK_CXXFLAGS([ -std=gnu++11 ], [  ], [
-    warn_cpp0x=1
-])
-
-CXXFLAGS="$OLDCXXFLAGS"
-CPPFLAGS="$OLDCPPFLAGS"
-CFLAGS="$OLDCFLAGS"
-
-if test x$warn_cpp0x = x1; then
-    AC_MSG_ERROR([ Your compiler must support C++11 or better ])
-fi
-
-dnl Allow devs to force compile as C++11 as long as this code supports C++11 as a baseline
-AC_ARG_ENABLE(force-cxx11,AC_HELP_STRING([--enable-force-cxx11],[Force compile as C++11]),force_cxx11=yes)
-
 if test x$warn_cpp11 = x1; then
-    AC_MSG_WARN([ Your compiler does not support C++14. Currently it is recommended. At some point in the future, it will be required ])
-    CFLAGS="$CFLAGS -std=gnu11";
-    CXXFLAGS="$CXXFLAGS -std=gnu++11";
-elif test x$force_cxx11 = xyes; then
-    CFLAGS="$CFLAGS -std=gnu11";
-    CXXFLAGS="$CXXFLAGS -std=gnu++11";
-else
-    AC_MSG_WARN([ DOSBox-X is still intended to support compilation as C++11. If you add new code please make sure it works as C++11 by running ./configure with --enable-force-cxx11 ])
-    CFLAGS="$CFLAGS -std=gnu11"; # no such "gnu14"
-    CXXFLAGS="$CXXFLAGS -std=gnu++14";
+    AC_MSG_ERROR([ Your compiler must support C++14 or better ])
 fi
+CFLAGS="$CFLAGS -std=gnu11"; # no such "gnu14"
+CXXFLAGS="$CXXFLAGS -std=gnu++14";
 
 dnl Allow the SDL drawn menu to be enabled on Windows or macOS instead of their native menu system.
 AH_TEMPLATE(C_FORCE_MENU_SDLDRAW,[Define to 1 to force SDL-drawn menus])
